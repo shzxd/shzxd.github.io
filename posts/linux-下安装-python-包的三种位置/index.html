@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.69.2" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="Linux,Python"><meta name="description" content="Linux 环境中系统如何厘清各种包的路径关系，自己安装的包到底去了哪里？"><meta property="og:title" content="Linux 下安装 Python 包的三种位置" />
+<meta property="og:description" content="Linux 环境中系统如何厘清各种包的路径关系，自己安装的包到底去了哪里？" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shzxd.github.io/posts/linux-%E4%B8%8B%E5%AE%89%E8%A3%85-python-%E5%8C%85%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BD%8D%E7%BD%AE/" />
+<meta property="article:published_time" content="2020-04-29T21:23:12+08:00" />
+<meta property="article:modified_time" content="2020-04-29T21:23:12+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux 下安装 Python 包的三种位置"/>
+<meta name="twitter:description" content="Linux 环境中系统如何厘清各种包的路径关系，自己安装的包到底去了哪里？"/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/all.css" />
+<link rel="stylesheet" href="https://shzxd.github.io/css/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://shzxd.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+  <script defer src="https://shzxd.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/css/custom.css" /><title>Linux 下安装 Python 包的三种位置 | zhang xiu dong</title></head>
+<body><header>
+
+  <div id="avatar">
+    <a href="https://shzxd.github.io/">
+      <img src="/icons/avatar.jpg" alt="zhang xiu dong">
+    </a>
+  </div>
+
+  <div id="titletext"><h2 id="title"><a href="https://shzxd.github.io/">zhang xiu dong</a></h2></div>
+  <div id="title-description"><p id="subtitle">踩坑实记，欢迎交流 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt;</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/shzxd"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="mailto:xiudongde@qq.com"><i title="e-mail" class="icons fas fa-envelope"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/categories">Categories</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+<div class="date">
+<span class="day">29</span>
+<span class="rest">Apr 2020</span>
+</div>
+</div>
+
+<div class="matter">
+<h1 class="title">Linux 下安装 Python 包的三种位置</h1>
+</div>
+</div>
+<div class="markdown">
+<h2 id="在linux下安装python包的三种位置">在Linux下安装Python包的三种位置：</h2>
+<p>1.创建虚拟环境，在其中安装包</p>
+<blockquote>
+<p>python3 -m venv env
+source ./env/bin/activate
+python3 -m pip install &lsquo;package_name&rsquo;</p>
+</blockquote>
+<p>2.将包安装在当前用户环境(安装目录一般在用户文件夹下，类似 /home/user/.local/lib/python3.5)</p>
+<blockquote>
+<p>python3 -m pip install &ndash;user &lsquo;package_name&rsquo;</p>
+</blockquote>
+<p>3.强制安装到系统环境(小心炸机^-^)</p>
+<blockquote>
+<p>sudo python3 -m pip install &ndash;user &lsquo;package_name&rsquo;</p>
+</blockquote>
+<h2 id="另在debian系列的发行版中系统会把安装包细分在两个目录下">另，在Debian系列的发行版中，系统会把安装包细分在两个目录下</h2>
+<blockquote>
+<p>dist-packages文件夹，存放通过系统的包管理器（i.e. apt install）安装的Python包。</p>
+</blockquote>
+<blockquote>
+<p>site-packages文件夹，存放通过pip，或从源代码手动构建等其他方式安装的Python包。</p>
+</blockquote>
+
+</div>
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<div class="taxosfloating_left">
+<p>Tags</p>
+</div>
+<div class="termsfloating_right">
+<p>
+
+
+
+
+
+
+
+<a href="/tags/linux/"> linux </a>
+
+
+
+
+
+<a href="/tags/python/"> python </a>
+
+
+
+
+
+
+
+</div>
+<div class="clearit"></div>
+
+
+
+
+
+</div></div>
+</div>
+
+</main><footer>
+
+
+
+</footer>
+</body>
+</html>
