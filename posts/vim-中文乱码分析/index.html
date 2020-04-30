@@ -85,10 +85,10 @@
 <h4 id="注解-1"><strong>注解：</strong></h4>
 <p>这里相关的设置不当，导致了中文文件乱码。例如系统默认的encoding为gbk（cp936），不属于某个Unicode的值，则fileencodings的值仍保持默认为ucs-bom，此时打开中文文件：</p>
 <ol>
-<li>如果文件是utf-8编码（一般都是无bom，<a href="http://www.unicode.org/versions/Unicode5.0.0/ch02.pdf">Unicode标准</a>不建议utf-8使用BOM），则会错误的使用ucs-bom解析而不出错（Vim认为成功解析）导致显示错误；</li>
+<li>如果文件是utf-8编码（一般都是无bom，<a href="http://www.unicode.org/versions/Unicode5.0.0/ch02.pdf">Unicode标准</a>不建议utf-8使用BOM）导致fileencodings列表全部解析失败，又因为fileencoding默认为空，所以会使用encoding解析，导致显示错误；</li>
 <li>如果文件是utf-8 with bom的，则中文也会正确解析显示；</li>
 <li>如果文件是utf-16，无论是le好还是be的，则中文也会正确解析显示；</li>
-<li>如果文件是gbk编码，会导致fileencodings列表全部失败，又因为fileencoding默认为空，所以会使用encoding解析，而encoding恰好为gbk，则不会显示错误。</li>
+<li>如果文件是gbk编码，也会导致fileencodings列表全部解析失败，又因为fileencoding默认为空，所以会使用encoding解析，而encoding恰好为gbk，则不会显示错误。</li>
 </ol>
 <h3 id="fileencodinghttpvimcdocsourceforgenetdocoptionshtmlfileencoding"><a href="http://vimcdoc.sourceforge.net/doc/options.html#'fileencoding'">fileencoding</a>：</h3>
 <h4 id="手册描述-2"><strong>手册描述：</strong></h4>
