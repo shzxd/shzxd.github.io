@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Linux on zhang xiu dong</title>
-    <link>https://shzxd.github.io/tags/linux/</link>
-    <description>Recent content in Linux on shzxd.github.io</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 29 Apr 2020 21:23:12 +0800</lastBuildDate>
-    
-    <atom:link href="https://shzxd.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Linux 下安装 Python 包的三种位置</title>
-      <link>https://shzxd.github.io/posts/linux-%E4%B8%8B%E5%AE%89%E8%A3%85-python-%E5%8C%85%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BD%8D%E7%BD%AE/</link>
-      <pubDate>Wed, 29 Apr 2020 21:23:12 +0800</pubDate>
-      
-      <guid>https://shzxd.github.io/posts/linux-%E4%B8%8B%E5%AE%89%E8%A3%85-python-%E5%8C%85%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BD%8D%E7%BD%AE/</guid>
-      <description>
-      
-      Linux 环境中系统如何厘清各种包的路径关系，自己安装的包到底去了哪里？
-      
-      </description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Linux on zhang xiu dong</title>
+		<link>https://shzxd.github.io/tags/linux/</link>
+		<description>Recent content in Linux on shzxd.github.io</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<lastBuildDate>Wed, 29 Apr 2020 21:23:12 +0800</lastBuildDate>
+		
+		<atom:link href="https://shzxd.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Linux 下安装 Python 包的三种位置</title>
+			<link>https://shzxd.github.io/posts/linux-%E4%B8%8B%E5%AE%89%E8%A3%85-python-%E5%8C%85%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BD%8D%E7%BD%AE/</link>
+			<pubDate>Wed, 29 Apr 2020 21:23:12 +0800</pubDate>
+			
+			<guid>https://shzxd.github.io/posts/linux-%E4%B8%8B%E5%AE%89%E8%A3%85-python-%E5%8C%85%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BD%8D%E7%BD%AE/</guid>
+			<description>
+				
+				Linux 环境中系统如何厘清各种包的路径关系，自己安装的包到底去了哪里？
+				
+			</description>
+		</item>
+		
+	</channel>
 </rss>

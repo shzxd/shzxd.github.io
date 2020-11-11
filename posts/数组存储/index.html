@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-
-  <meta name="generator" content="Hugo 0.68.3" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="keywords" content="data structure,array"><meta name="description" content="为什么很多编程语言中的数组索引设计为从0开始？多维数组的两种存储方式？"><meta property="og:title" content="数组存储" />
+	
+	<meta name="generator" content="Hugo 0.68.3" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<meta property="og:title" content="数组存储">
+	
+	
+	<meta name="keywords" content="data structure,array"><meta name="description" content="为什么很多编程语言中的数组索引设计为从0开始？多维数组的两种存储方式？"><meta property="og:title" content="数组存储" />
 <meta property="og:description" content="为什么很多编程语言中的数组索引设计为从0开始？多维数组的两种存储方式？" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shzxd.github.io/posts/%E6%95%B0%E7%BB%84%E5%AD%98%E5%82%A8/" />
@@ -15,64 +19,72 @@
 <meta name="twitter:title" content="数组存储"/>
 <meta name="twitter:description" content="为什么很多编程语言中的数组索引设计为从0开始？多维数组的两种存储方式？"/>
 
-  <link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/normalize.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/main.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/all.css" />
-<link rel="stylesheet" href="https://shzxd.github.io/css/katex.min.css" crossorigin="anonymous">
-  <script defer src="https://shzxd.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-  <script defer src="https://shzxd.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/css/custom.css" /><title>数组存储 | zhang xiu dong</title></head>
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/all.css" />
+	<link rel="stylesheet" href="/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><link rel="stylesheet" type="text/css" media="screen" href="/css/custom.css" /><title>数组存储 | zhang xiu dong</title></head>
 <body><header>
-
-  <div id="avatar">
-    <a href="https://shzxd.github.io/">
-      <img src="/icons/avatar.jpg" alt="zhang xiu dong">
-    </a>
-  </div>
-
-  <div id="titletext"><h2 id="title"><a href="https://shzxd.github.io/">zhang xiu dong</a></h2></div>
-  <div id="title-description"><p id="subtitle">踩坑实记，欢迎交流 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt;</p><div id=social>
-    <nav>
-      <ul><li><a href="https://github.com/shzxd"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="mailto:xiudongde@qq.com"><i title="e-mail" class="icons fas fa-envelope"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
-    </nav>
-  </div>
-  </div>
-  <div id="mainmenu">
-    <nav>
-      <ul>
-        
-        <li><a href="/">Home</a></li>
-        
-        <li><a href="/posts">All Posts</a></li>
-        
-        <li><a href="/about">About</a></li>
-        
-        <li><a href="/tags">Tags</a></li>
-        
-        <li><a href="/categories">Categories</a></li>
-        
-      </ul>
-    </nav>
-  </div>
+	
+	<div id="avatar">
+		<a href="https://shzxd.github.io/">
+		  <img src="/icons/avatar.jpg" alt="zhang xiu dong">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://shzxd.github.io/">zhang xiu dong</a></h2></div>
+	<div id="title-description"><p id="subtitle">踩坑实记，欢迎交流 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt;</p><div id="social">
+			<nav>
+				<ul>
+					<li><a href="https://github.com/shzxd"><i title="Github" class="icons fab fa-github"></i></a></li>
+					<li><a href="/mailto:xiudongde@qq.com"><i title="e-mail" class="icons fas fa-envelope"></i></a></li>
+					<li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/posts">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
 </header>
 <main><div class="post">
-<div class="author">
-
-</div>
-<div class="post-header">
-
-<div class="meta">
-<div class="date">
-<span class="day">11</span>
-<span class="rest">Nov 2020</span>
-</div>
-</div>
-
-<div class="matter">
-<h1 class="title">数组存储</h1>
-</div>
-</div>
-<div class="markdown">
-<p>简要介绍常用数据结构——数组。为什么很多编程语言中的数组索引设计为从0开始？多维数组的两种存储方式？</p>
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">11</span>
+				<span class="rest">Nov 2020</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">数组存储</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		<p>简要介绍常用数据结构——数组。为什么很多编程语言中的数组索引设计为从0开始？多维数组的两种存储方式？</p>
 <h1 id="数组存储">数组存储</h1>
 <p><strong>数组（array）</strong> 是一种由 <em>元素</em> （values or variables）的集合组成的数据结构，每个 <em>元素</em> 都由至少一个 <em>数组索引</em> 标识。数组的存储方式使得可以通过数学公式从其索引序列计算每个元素的（内存）位置。最简单的数组是线性数组，也称为一维数组。</p>
 <p>例如，索引为0到9的10个32位（4字节）整数变量的数组可以作为10个字存储在内存地址2000、2004、2008，&hellip;，2036中，这样具有索引 <em>i</em> 的地址为2000 +（ <em>i</em>  ×4）。其中第一个元素的内存地址，2000称为基地址（base address）。</p>
@@ -94,7 +106,7 @@
 <h2 id="物理存储布局layout">物理存储布局（layout）</h2>
 <p>数组通常（例如，数组切片就是个例外）存储在内存中的一块连续区域上。
 行优先序（row-major order）和列优先序（ column-major order ）是两种用来将数组存储在线性存储器（例如RAM）上的方法。
-<img src="https://cdn.nlark.com/yuque/0/2020/png/2867829/1605023871063-b53203bd-580a-48c9-ad69-7afd8115a1b3.png#align=left&amp;display=inline&amp;height=599&amp;margin=%5Bobject%20Object%5D&amp;name=Row_and_column_major_order.png&amp;originHeight=599&amp;originWidth=449&amp;size=33573&amp;status=done&amp;style=none&amp;width=449" alt="Row_and_column_major_order.png">
+<img src="/images/Row_and_column_major_order.png" alt="Row_and_column_major_order.png">
 在行优先序布局（c语言）中，每行中的元素存储在连续的位置，并且一行中的所有元素的地址都比它之后的行中的任何元素的地址低（每一行的元素地址都比它之后行中的元素地址低）：</p>
 <table>
 <thead>
@@ -132,65 +144,66 @@
 <p>在使用处理器缓存或虚拟内存的系统中，如果将连续元素存储在内存中的连续位置而不是稀疏分散，则扫描数组要快得多。许多使用多维数组的算法会以可预测的顺序对其进行扫描。程序员（或高级编译器）可以使用此信息为每个数组在行或列优先的布局之间进行选择。例如计算A,B两个矩阵的乘积A·B时，最好让A存储为行优先，B存储为列优先。</p>
 <p>注：本文主要来源于维基百科<a href="https://en.wikipedia.org/wiki/Array_data_structure">Array data structure</a> 。</p>
 
-</div>
-<div class="tags">
+	</div>
+	
+	
+	
+	
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			<a href="/tags/array/"> array </a>
+			
+			
+			
+			
+			
+			<a href="/tags/data-structure/"> data-structure </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
 
 
 
 
 
-
-
-
-
-<div class="taxosfloating_left">
-<p>Tags</p>
-</div>
-<div class="termsfloating_right">
-<p>
-
-
-
-<a href="/tags/array/"> array </a>
-
-
-
-
-
-<a href="/tags/data-structure/"> data-structure </a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-<div class="clearit"></div>
-
-
-
-
-
-</div></div>
-</div>
-
-</main><footer>
-
-
-
-</footer>
 </body>
 </html>
