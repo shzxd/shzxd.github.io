@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+
+  <meta name="generator" content="Hugo 0.68.3" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="data structure,array"><meta name="description" content="为什么很多编程语言中的数组索引设计为从0开始？多维数组的两种存储方式？"><meta property="og:title" content="数组存储" />
+<meta property="og:description" content="为什么很多编程语言中的数组索引设计为从0开始？多维数组的两种存储方式？" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shzxd.github.io/posts/%E6%95%B0%E7%BB%84%E5%AD%98%E5%82%A8/" />
+<meta property="article:published_time" content="2020-11-11T10:18:58+08:00" />
+<meta property="article:modified_time" content="2020-11-11T10:18:58+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="数组存储"/>
+<meta name="twitter:description" content="为什么很多编程语言中的数组索引设计为从0开始？多维数组的两种存储方式？"/>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/normalize.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/all.css" />
+<link rel="stylesheet" href="https://shzxd.github.io/css/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://shzxd.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+  <script defer src="https://shzxd.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><link rel="stylesheet" type="text/css" media="screen" href="https://shzxd.github.io/css/css/custom.css" /><title>数组存储 | zhang xiu dong</title></head>
+<body><header>
+
+  <div id="avatar">
+    <a href="https://shzxd.github.io/">
+      <img src="/icons/avatar.jpg" alt="zhang xiu dong">
+    </a>
+  </div>
+
+  <div id="titletext"><h2 id="title"><a href="https://shzxd.github.io/">zhang xiu dong</a></h2></div>
+  <div id="title-description"><p id="subtitle">踩坑实记，欢迎交流 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt;</p><div id=social>
+    <nav>
+      <ul><li><a href="https://github.com/shzxd"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="mailto:xiudongde@qq.com"><i title="e-mail" class="icons fas fa-envelope"></i></a></li><li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+    </nav>
+  </div>
+  </div>
+  <div id="mainmenu">
+    <nav>
+      <ul>
+        
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/posts">All Posts</a></li>
+        
+        <li><a href="/about">About</a></li>
+        
+        <li><a href="/tags">Tags</a></li>
+        
+        <li><a href="/categories">Categories</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+<main><div class="post">
+<div class="author">
+
+</div>
+<div class="post-header">
+
+<div class="meta">
+<div class="date">
+<span class="day">11</span>
+<span class="rest">Nov 2020</span>
+</div>
+</div>
+
+<div class="matter">
+<h1 class="title">数组存储</h1>
+</div>
+</div>
+<div class="markdown">
+<p>简要介绍常用数据结构——数组。为什么很多编程语言中的数组索引设计为从0开始？多维数组的两种存储方式？</p>
+<h1 id="数组存储">数组存储</h1>
+<p><strong>数组（array）</strong> 是一种由 <em>元素</em> （values or variables）的集合组成的数据结构，每个 <em>元素</em> 都由至少一个 <em>数组索引</em> 标识。数组的存储方式使得可以通过数学公式从其索引序列计算每个元素的（内存）位置。最简单的数组是线性数组，也称为一维数组。</p>
+<p>例如，索引为0到9的10个32位（4字节）整数变量的数组可以作为10个字存储在内存地址2000、2004、2008，&hellip;，2036中，这样具有索引 <em>i</em> 的地址为2000 +（ <em>i</em>  ×4）。其中第一个元素的内存地址，2000称为基地址（base address）。</p>
+<p>数组是最古老，最重要，也是最常用的数据结构之一。它也可以被用来实现其它数据结构，例如<a href="https://en.wikipedia.org/wiki/List_(computing)">列表</a>（list）和<a href="https://en.wikipedia.org/wiki/String_(computer_science)">字符串</a>（string）。在大多数现代计算机和许多外部存储设备中，内存是字的一维数组，其索引是它们的地址。处理器（尤其是<a href="https://en.wikipedia.org/wiki/Vector_processor">矢量处理器</a>）通常针对数组操作进行了优化。</p>
+<h2 id="索引和寻址公式">索引和寻址公式</h2>
+<p>当数据对象存储在数组中时，单个对象通常由非负整数的标量索引选择。索引也称为下标（subscript）。索引将数组值 <em>映射</em> 到存储的对象。</p>
+<p>通常对数组元素建立索引采用 <em><a href="https://en.wikipedia.org/wiki/Zero-based_numbering">zero-based indexing</a>，</em> 即从零开始的索引编制，数组的第一个元素的下标为0。这是因为数组下标指的是距数组起始位置的偏移量，第一个元素的偏移量自然为零。</p>
+<p>数组可以有多个维度，因此可以使用多个索引访问数组，两个索引用于二维数组，三个索引用于三维数组，<em>n</em> 个索引表示 <em>n</em> 维数组。数组的维数就是定位一个元素所需的索引数。在标准数组中，元素的地址是通过索引上的“线性”公式来计算的。</p>
+<h3 id="一维数组">一维数组</h3>
+<p>访问一维数组的元素只需一个下标，该下标可以表示行索引或列索引。</p>
+<p>例如，考虑一下C声明<code>int anArrayName[10];</code>，该声明声明一个由十个整数组成的一维数组。在这里，数组可以存储 十个 int 类型的元素。该数组的索引从零到九开始。例如，表达式<code>anArrayName[0]</code>和<code>anArrayName[9]</code>分别是第一个和最后一个元素。</p>
+<p>对于具有线性寻址的向量，索引为 <em>i</em> 的元素位于地址 <strong><em>B</em></strong> <strong>+</strong> <strong><em>c</em></strong> <strong>×</strong> <strong><em>i</em></strong> <em>处</em>，其中 <em>B</em> 是固定的 <em>基地址</em> ， <em>c</em> 是固定的常数，有时也称为 <em>地址增量</em> 或 <em>跨度</em> （stride）。
+如果有效元素索引从0开始，则常数 <em>B</em> 就是数组第一个元素的地址。因此，C编程语言指定数组索引始终从0开始。</p>
+<h3 id="多维数组">多维数组</h3>
+<p>对于多维数组，索引为 <em>i</em> ， <em>j</em> 的元素将具有地址 <em>B</em> + <em>c</em> · <em>i</em> + <em>d</em> · <em>j</em> ，其中系数 <em>c</em> 和 <em>d</em> 分别是 <em>行</em> 和 <em>列地址的增量</em> 。更一般而言，在 <em>k</em> 维数组中，索引为 <em>i1</em> ， <em>i2</em> ，&hellip;， <em>ik</em> 的元素的地址为 <em>B</em> + <em>c1</em> · <em>i1</em> + <em>c2</em> · <em>i2</em> +…+ <em>ck</em> · <em>ik</em> 。</p>
+<p>例如：int a [2] [3];这意味着数组a具有2行3列，并且该数组是整数类型。在这里，我们可以存储6个元素，它们将线性存储，但先从第一行开始线性存储，然后继续第二行。</p>
+<p>对于可以放入内存的任何数组，计算公式只需要 <em>k</em> 个乘法和 <em>k</em> 个加法。此外，如果有系数为2的固定乘方，就可以用移位来代替乘法。</p>
+<p>可以看出，<strong>寻址公式完全由<strong><strong>基地址，维度，增量</strong></strong>决定，因此这三个参数可以作为数组描述符，通过操作该描述向量(</strong><em><a href="https://en.wikipedia.org/wiki/Dope_vector">dope vector</a></em><strong>)可以实现更高级的数组操作。</strong></p>
+<h2 id="物理存储布局layout">物理存储布局（layout）</h2>
+<p>数组通常（例如，数组切片就是个例外）存储在内存中的一块连续区域上。
+行优先序（row-major order）和列优先序（ column-major order ）是两种用来将数组存储在线性存储器（例如RAM）上的方法。
+<img src="https://cdn.nlark.com/yuque/0/2020/png/2867829/1605023871063-b53203bd-580a-48c9-ad69-7afd8115a1b3.png#align=left&amp;display=inline&amp;height=599&amp;margin=%5Bobject%20Object%5D&amp;name=Row_and_column_major_order.png&amp;originHeight=599&amp;originWidth=449&amp;size=33573&amp;status=done&amp;style=none&amp;width=449" alt="Row_and_column_major_order.png">
+在行优先序布局（c语言）中，每行中的元素存储在连续的位置，并且一行中的所有元素的地址都比它之后的行中的任何元素的地址低（每一行的元素地址都比它之后行中的元素地址低）：</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+</tr>
+</thead>
+</table>
+<p>在列优先序（传统上由Fortran使用），每列中的元素在内存中都是连续的，并且一列中的所有元素的地址都比它之后列中的任何元素的地址低（每一列的元素地址都比它之后列中的元素地址低）：</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>4</th>
+<th>7</th>
+<th>2</th>
+<th>5</th>
+<th>8</th>
+<th>3</th>
+<th>6</th>
+<th>9</th>
+</tr>
+</thead>
+</table>
+<p>对于具有三个或三个以上索引的数组，“行优先序”将索引序列在 <em>最后一个</em> 索引中仅相差一的任何两个元素置于连续位置。“列优先序”将其索引序列在 <em>第一个</em> 索引中仅相差一个的任何两个元素置于连续位置。
+（此处原文如下：&ldquo;row major order&rdquo; puts in consecutive positions any two elements whose index tuples differ only by one in the <em>last</em> index. &ldquo;Column major order&rdquo; is analogous with respect to the <em>first</em> index.）</p>
+<p>在使用处理器缓存或虚拟内存的系统中，如果将连续元素存储在内存中的连续位置而不是稀疏分散，则扫描数组要快得多。许多使用多维数组的算法会以可预测的顺序对其进行扫描。程序员（或高级编译器）可以使用此信息为每个数组在行或列优先的布局之间进行选择。例如计算A,B两个矩阵的乘积A·B时，最好让A存储为行优先，B存储为列优先。</p>
+<p>注：本文主要来源于维基百科<a href="https://en.wikipedia.org/wiki/Array_data_structure">Array data structure</a> 。</p>
+
+</div>
+<div class="tags">
+
+
+
+
+
+
+
+
+
+<div class="taxosfloating_left">
+<p>Tags</p>
+</div>
+<div class="termsfloating_right">
+<p>
+
+
+
+<a href="/tags/array/"> array </a>
+
+
+
+
+
+<a href="/tags/data-structure/"> data-structure </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="clearit"></div>
+
+
+
+
+
+</div></div>
+</div>
+
+</main><footer>
+
+
+
+</footer>
+</body>
+</html>
