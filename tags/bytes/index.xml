@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>bytes on zhang xiu dong</title>
+		<link>https://shzxd.github.io/tags/bytes/</link>
+		<description>Recent content in bytes on shzxd.github.io</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<lastBuildDate>Wed, 18 Nov 2020 10:50:12 +0800</lastBuildDate>
+		
+		<atom:link href="https://shzxd.github.io/tags/bytes/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>bytes对象</title>
+			<link>https://shzxd.github.io/posts/bytes%E5%AF%B9%E8%B1%A1/</link>
+			<pubDate>Wed, 18 Nov 2020 10:50:12 +0800</pubDate>
+			
+			<guid>https://shzxd.github.io/posts/bytes%E5%AF%B9%E8%B1%A1/</guid>
+			<description>
+				
+				什么是bytes（字节），在Python中如何操作bytes对象？
+				
+			</description>
+		</item>
+		
+	</channel>
+</rss>

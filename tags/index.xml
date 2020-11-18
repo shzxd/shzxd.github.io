@@ -6,10 +6,34 @@
 		<description>Recent content in Tags on shzxd.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
-		<lastBuildDate>Wed, 11 Nov 2020 10:18:58 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 18 Nov 2020 10:50:12 +0800</lastBuildDate>
 		
 		<atom:link href="https://shzxd.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>bytes</title>
+			<link>https://shzxd.github.io/tags/bytes/</link>
+			<pubDate>Wed, 18 Nov 2020 10:50:12 +0800</pubDate>
+			
+			<guid>https://shzxd.github.io/tags/bytes/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>Python</title>
+			<link>https://shzxd.github.io/tags/python/</link>
+			<pubDate>Wed, 18 Nov 2020 10:50:12 +0800</pubDate>
+			
+			<guid>https://shzxd.github.io/tags/python/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>array</title>
 			<link>https://shzxd.github.io/tags/array/</link>
@@ -40,18 +64,6 @@
 			<pubDate>Wed, 29 Apr 2020 21:23:12 +0800</pubDate>
 			
 			<guid>https://shzxd.github.io/tags/linux/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>Python</title>
-			<link>https://shzxd.github.io/tags/python/</link>
-			<pubDate>Wed, 29 Apr 2020 21:23:12 +0800</pubDate>
-			
-			<guid>https://shzxd.github.io/tags/python/</guid>
 			<description>
 				
 				

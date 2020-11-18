@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.77.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<meta property="og:title" content="bytes对象">
+	
+	
+	<meta name="keywords" content="bytes,Python"><meta name="description" content="什么是bytes（字节），在Python中如何操作bytes对象？"><meta property="og:title" content="bytes对象" />
+<meta property="og:description" content="什么是bytes（字节），在Python中如何操作bytes对象？" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shzxd.github.io/posts/bytes%E5%AF%B9%E8%B1%A1/" />
+<meta property="article:published_time" content="2020-11-18T10:50:12+08:00" />
+<meta property="article:modified_time" content="2020-11-18T10:50:12+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="bytes对象"/>
+<meta name="twitter:description" content="什么是bytes（字节），在Python中如何操作bytes对象？"/>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/all.css" />
+	<link rel="stylesheet" href="/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><link rel="stylesheet" type="text/css" media="screen" href="/css/custom.css" /><title>bytes对象 | zhang xiu dong</title></head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://shzxd.github.io/">
+		  <img src="/icons/avatar.jpg" alt="zhang xiu dong">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://shzxd.github.io/">zhang xiu dong</a></h2></div>
+	<div id="title-description"><p id="subtitle">踩坑实记，欢迎交流 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt;</p><div id="social">
+			<nav>
+				<ul>
+					<li><a href="https://github.com/shzxd"><i title="Github" class="icons fab fa-github"></i></a></li>
+					<li><a href="/mailto:xiudongde@qq.com"><i title="e-mail" class="icons fas fa-envelope"></i></a></li>
+					<li><a href="/index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/posts">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">18</span>
+				<span class="rest">Nov 2020</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">bytes对象</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		<h1 id="bytes对象">bytes对象</h1>
+<h2 id="计算机体系架构中的byte">计算机体系架构中的byte</h2>
+<p>字节（byte）是数字信息的一个单位，表示<strong>用于编码文本中单个字符的bit位数</strong>。在大多数计算机架构中，字节是最小的可寻址存储单元。在历史早期，字节的大小并没有一个明确的标准，后来随着标准的制定，字节被明确为八位大小，单位符号为B。</p>
+<h2 id="编程语言中的byte">编程语言中的byte</h2>
+<p>为了操作方便，许多编成语言都定义了byte数据类型。注意这里统一用了byte，可能各个语言会用不同的术语表述字节数据类型（例如Python中是<code>bytes</code>）。</p>
+<p>C/C++将字节定义为“addressable unit of data storage large enough to hold any member of the basic character set of the execution environment”（在数据存储器中，一块足够大的可寻址单元，可以用来处理执行环境中基本字符集的任意字符）。C标准要求整数数据类型unsigned char 必须至少包含256个不同的值，并由至少八个bit表示。此外，C和C++标准要求两个字节之间没有间隙(gap)，这意味着内存中的每个位都是一个字节的一部分。</p>
+<p>Java原生<code>byte</code>数据类型始终定义为由8位组成，并且是带符号的数据类型，其值介于-128到127之间。
+下面重点研究下Python中的byte数据类型。</p>
+<h2 id="python中的-bytes-对象">Python中的 <code>bytes</code> 对象</h2>
+<p><code>bytes</code>是Python中专门用于二进制的数据的序列类型之一，另外两个是<code>bytearray</code>和<code>memoryview</code>。<code>memoryview</code>为<code>bytes</code>和<code>bytearray</code>对象提供了下层支持，基于<a href="https://docs.python.org/zh-cn/3/c-api/buffer.html#bufferobjects">缓冲区协议</a>，<code>memoryview</code>对象允许Python代码访问一个对象的内部数据而无需拷贝。</p>
+<p><strong><code>bytes</code> 对象是由单个字节构成的不可变序列。</strong> 由于在处理二进制数据时很多都是基于 ASCII 文本编码（在ASCII字符与二进制间互相转换），因此 <code>bytes</code> 对象提供了一些仅在处理 ASCII 兼容数据时可用，并且在许多特性上与<code>str</code>对象紧密相关的方法。</p>
+<h3 id="创建bytes对象的两类方法">创建<code>bytes</code>对象的两类方法</h3>
+<ol>
+<li>
+<p>字面值创建法（通俗讲就是直接书写在源代码中的方式）</p>
+<p>首先，表示 <code>bytes</code> 字面值的语法与字符串字面值的大致相同，只是添加了一个 <code>b</code> 前缀：</p>
+<ul>
+<li>
+<p>​	单引号: <code>b'同样允许嵌入 &quot;双&quot; 引号'</code>。</p>
+</li>
+<li>
+<p>​	双引号: <code>b&quot;同样允许嵌入 '单' 引号&quot;</code>。</p>
+</li>
+<li>
+<p>​	三重引号: <code>b'''三重单引号'''</code>, <code>b&quot;&quot;&quot;三重双引号&quot;&quot;&quot;</code></p>
+</li>
+</ul>
+<p><code>bytes</code> 字面值中只允许 ASCII 字符（无论源代码声明的编码为何）。 任何超出 127 的二进制值必须使用相应的转义序列形式加入 <code>bytes</code> 字面值。</p>
+</li>
+<li>
+<p><code>bytes</code>构造器创建</p>
+<ul>
+<li>
+<p>指定长度的以零值填充的 bytes 对象: <code>bytes(10)</code></p>
+</li>
+<li>
+<p>通过由整数组成的可迭代对象: <code>bytes(range(20))</code></p>
+</li>
+<li>
+<p>通过缓冲区协议复制现有的二进制数据: <code>bytes(obj)</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="bytes对象的两种额外类方法在str-like方法之外"><code>bytes</code>对象的两种额外类方法（在str-like方法之外）</h3>
+<p>由于两位十六进制数精确对应一个字节，因此十六进制数是描述二进制数据的常用格式。 相应地，bytes 类型具有从此种格式读取数据的附加类方法：</p>
+<p><code> classmethod fromhex ( string )</code></p>
+<p>此 <code>bytes</code> 类方法返回一个解码给定字符串的 <code>bytes</code> 对象。 字符串必须由表示每个字节的两位十六进制数构成，其中的 <!-- raw HTML omitted -->ASCII 空白符<!-- raw HTML omitted -->（如空格）会被忽略。</p>
+<p>存在一个反向转换函数，可以将 <code>bytes</code> 对象转换为对应的十六进制表示。</p>
+<p><code>hex([sep[, bytes_per_sep]])</code></p>
+<p>返回一个字符串对象，该对象包含实例中每个字节对应的两位十六进制数。</p>
+<p>如果你希望令十六进制数字符串更易读，你可以指定单个字符分隔符作为 <em>sep</em> 形参包含于输出中。 默认会放在每个字节之间。 第二个可选的 <em>bytes_per_sep</em> 形参控制间距。正值会从右开始计算分隔符的位置，负值则是从左开始（<!-- raw HTML omitted -->todo: 似乎不符合直觉，这样设计的原因何在，与字节序有关么<!-- raw HTML omitted -->）。</p>
+<p>由于 bytes 对象是由整数构成的序列（类似于元组），因此对于一个 bytes 对象 b，b[0] 将为一个整数，而 b[0:1] 将为一个长度为 1 的 bytes 对象。（这与文本字符串不同，索引和切片所产生的将都是一个长度为 1 的字符串）。</p>
+<p>bytes 对象的表示使用字面值格式 (b'&hellip;')，因为它通常都要比像 bytes([46, 46, 46]) 这样的格式更好用。 你总是可以使用 list(b) 将 bytes 对象转换为一个由整数构成的列表。</p>
+<h3 id="参考">参考</h3>
+<ol>
+<li>Python 3.9 手册</li>
+<li><a href="https://en.wikipedia.org/wiki/Byte">https://en.wikipedia.org/wiki/Byte</a></li>
+</ol>
+
+	</div>
+	
+	
+	
+	
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			<a href="/tags/bytes/"> bytes </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="/tags/python/"> python </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+
+
+
+
+</body>
+</html>

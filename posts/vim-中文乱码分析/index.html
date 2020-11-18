@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 	
-	<meta name="generator" content="Hugo 0.68.3" />
+	<meta name="generator" content="Hugo 0.77.0" />
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,7 +93,7 @@
 <p>这里相关的设置不当，导致了中文文件乱码。系统locale为中文，默认encoding设置为gbk（默认设置可通过在Vim中输入:set encoding查看），然而在配置文件中将encoding强制定义为utf-8<!-- raw HTML omitted --><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup><!-- raw HTML omitted -->，因此出现冲突。</p>
 <h3 id="fileencodingshttpvimcdocsourceforgenetdocoptionshtmlfileencodings"><a href="http://vimcdoc.sourceforge.net/doc/options.html#'fileencodings'">fileencodings</a>：</h3>
 <h4 id="手册描述-1"><strong>手册描述：</strong></h4>
-<p>（缺省: &ldquo;<!-- raw HTML omitted -->ucs-bom<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup><!-- raw HTML omitted -->&rdquo;，如果 &lsquo;encoding&rsquo; 为某个 Unicode 的值（Unicode方案的实现方式之一例如utf-8，utf-16）， &ldquo;ucs-bom,utf-8,default,latin1&rdquo;）这是一个字符编码的列表，开始编辑已存在的文件时，参考此选项。如果文件被读入，Vim 尝试使用本列表第一个字符编码。如果检测到错误，使用列表的下一个。如果找到一个能用的编码，设置 &lsquo;fileencoding&rsquo; 为该值。如果全都失败，&lsquo;fileencoding&rsquo; 设为空字符串，这意味着使用 &lsquo;encoding&rsquo; 的值。</p>
+<p>（缺省: &ldquo;<!-- raw HTML omitted -->ucs-bom<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup><!-- raw HTML omitted -->&quot;，如果 &lsquo;encoding&rsquo; 为某个 Unicode 的值（Unicode方案的实现方式之一例如utf-8，utf-16）， &ldquo;ucs-bom,utf-8,default,latin1&rdquo;）这是一个字符编码的列表，开始编辑已存在的文件时，参考此选项。如果文件被读入，Vim 尝试使用本列表第一个字符编码。如果检测到错误，使用列表的下一个。如果找到一个能用的编码，设置 &lsquo;fileencoding&rsquo; 为该值。如果全都失败，&lsquo;fileencoding&rsquo; 设为空字符串，这意味着使用 &lsquo;encoding&rsquo; 的值。</p>
 <h4 id="注解-1"><strong>注解：</strong></h4>
 <p>这里相关的设置不当，导致了中文文件乱码。例如系统默认的encoding为gbk（cp936），不属于某个Unicode的值，则fileencodings的值仍保持默认为ucs-bom，此时打开中文文件：</p>
 <ol>
@@ -168,7 +168,13 @@
 			
 			
 			
+			
+			
+			
+			
 			<a href="/tags/encoding/"> encoding </a>
+			
+			
 			
 			
 			
